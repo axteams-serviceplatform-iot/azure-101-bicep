@@ -1,8 +1,14 @@
+@description('Azure region where resources should be deployed')
+param location string
+
 @description('Timestamp used to uniquely name each module deployment')
 param now string = utcNow()
 
 module web './modules/web.bicep' = {
   name: 'web-module-${now}'
+  params: {
+    location: location
+  }
 }
 
 module storage './modules/storage.bicep' = {
@@ -11,6 +17,9 @@ module storage './modules/storage.bicep' = {
 
 module cosmos './modules/cosmos.bicep' = {
   name: 'cosmos-module-${now}'
+  params: {
+    location: location
+  }
 }
 
 module servicebus './modules/servicebus.bicep' = {
@@ -20,6 +29,8 @@ module servicebus './modules/servicebus.bicep' = {
 module functionApp './modules/function-app.bicep' = {
   name: 'function-app-module-${now}'
   params: {
+    location: location
+
     // a list of endpoints that will be added to the CORS list on the function app
     corsUrls: [
       web.outputs.storageWebEndpoint
