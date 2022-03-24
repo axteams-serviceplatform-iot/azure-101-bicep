@@ -21,14 +21,14 @@ var origin = replace(replace(storage.properties.primaryEndpoints.web, 'https://'
 
 @description('CDN profile resource and CDN endpoint child resource')
 resource cdn 'Microsoft.Cdn/profiles@2020-09-01' = {
-  name: 'cdn${namePostfix}'
+  name: 'cdnprofile${namePostfix}'
   location: location
   sku: {
     name: 'Standard_Microsoft'
   }
 
   resource endpoint 'endpoints' = {
-    name: 'endpoint${namePostfix}'
+    name: 'cdnendpoint${namePostfix}'
     location: location
     properties: {
       originHostHeader: origin

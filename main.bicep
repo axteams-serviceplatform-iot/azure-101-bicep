@@ -24,6 +24,9 @@ module cosmos './modules/cosmos.bicep' = {
 
 module servicebus './modules/servicebus.bicep' = {
   name: 'servicebus-module-${now}'
+  params: {
+    location: location
+  }
 }
 
 module functionApp './modules/function-app.bicep' = {

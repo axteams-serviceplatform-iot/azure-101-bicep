@@ -3,7 +3,7 @@ param location string
 
 @description('A serverless Cosmos DB account')
 resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2021-06-15' = {
-  name: 'cosmos-${uniqueString(resourceGroup().id)}'
+  name: 'cosmos-account-${uniqueString(resourceGroup().id)}'
   location: location
   properties: {
     databaseAccountOfferType: 'Standard'

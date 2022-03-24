@@ -1,3 +1,6 @@
+@description('Azure region where resources should be deployed')
+param location string
+
 // TODO: add a resource of type Microsoft.ServiceBus/namespaces
 //       - use the 'Basic' service tier
 

@@ -50,10 +50,11 @@ var endpointSuffix = environment().suffixes.storage
 
 @description('A Windows Function App resource')
 resource functionApp 'Microsoft.Web/sites@2021-01-15' = {
-  name: 'funcapp-${nameSuffix}'
+  name: 'functionapp-${nameSuffix}'
   location: location
   kind: 'functionapp'
   properties: {
+    httpsOnly: true
     siteConfig: {
       cors: {
         allowedOrigins: concat(corsUrls, [
