@@ -9,7 +9,7 @@ param corsUrls array = []
 @description('Application specific settings such as connection strings')
 param appSettings array = []
 
-var nameSuffix = '${uniqueString(resourceGroup().id)}'
+var nameSuffix = uniqueString(resourceGroup().id)
 
 @description('App Service consumption plan for the function app')
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-01-15' = {
@@ -63,10 +63,6 @@ resource functionApp 'Microsoft.Web/sites@2021-01-15' = {
       }
       appSettings: concat(appSettings, [
         {
-          name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
-          value: applicationInsights.properties.InstrumentationKey
-        }
-        {
           name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
           value: applicationInsights.properties.ConnectionString
         }
@@ -76,7 +72,7 @@ resource functionApp 'Microsoft.Web/sites@2021-01-15' = {
         }
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
-          value: '~3'
+          value: '~4'
         }
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
